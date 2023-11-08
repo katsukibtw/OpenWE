@@ -1,0 +1,10 @@
+.plus_icon {
+	height: 1.25rem;
+	width: 1.25rem;
+}
+
+.center_plus_icon {
+	height: 8.5rem;
+	width: 8.5rem;
+	opacity: .5;
+}
