@@ -3,38 +3,13 @@ import { WiDirectionUp } from "react-icons/wi";
 import getIcon from "../api/getIcon";
 import getWeatherType from "../api/getWeatherType";
 import formatDate from "../api/formatDate";
-
-interface HourlyForecast {
-  time: string[];
-  weather_code: number[];
-  is_day: number[];
-  temperature_2m: number[];
-}
-
-interface CurrentUnits {
-  wind_speed_10m: string;
-  precipitation: string;
-}
-
-interface CurrentForecast {
-  time: string;
-  precipitation: number;
-  is_day: number;
-  temperature_2m: number;
-  apparent_temperature: number;
-  weather_code: number;
-  wind_speed_10m: number;
-  wind_direction_10m: number;
-  rain: number;
-  showers: number;
-  snowfall: number;
-}
+import { CurrentData, CurrentDataUnits, HourlyData } from '../api/weather.interfaces';
 
 interface Props {
   city: string;
-  current: CurrentForecast;
-  current_units: CurrentUnits;
-  hourly: HourlyForecast;
+  current: CurrentData;
+  current_units: CurrentDataUnits;
+  hourly: HourlyData;
 }
 
 export default function CurrentWeather(props: Props) {

@@ -10,28 +10,7 @@ import {
 import getIcon from "../api/getIcon";
 import formatDate from "../api/formatDate";
 import { WiDirectionUp } from "react-icons/wi";
-
-interface DailyDataUnits {
-    wind_speed_10m_max: string;
-    precipitation_sum: string;
-}
-
-interface DailyData {
-    time: string[];
-    weather_code: number[];
-    temperature_2m_max: number[];
-    temperature_2m_min: number[];
-    wind_speed_10m_max: number[];
-    wind_direction_10m_dominant: number[];
-    precipitation_sum: number[];
-}
-
-interface HourlyData {
-		time: string[];
-		weather_code: number[];
-		is_day: number[];
-		temperature_2m: number[];
-}
+import { DailyData, DailyDataUnits, HourlyData } from '../api/weather.interfaces';
 
 interface Props {
 		daily: DailyData;
@@ -60,7 +39,7 @@ export default function DailyForecast(props: Props) {
       <Accordion defaultIndex={[0]} allowMultiple>
         {props.daily.time.map((el, index) =>
           index !== 0 ? (
-            <AccordionItem>
+            <AccordionItem key={index}>
               <h2>
                 <AccordionButton>
                   <Box as="span" flex="1" textAlign="left" fontWeight="700">
