@@ -48,6 +48,7 @@ export default function CurrentWeather(props: Props) {
       pos="relative"
     >
       <IconButton
+        aria-label="Remove city"
         pos="absolute"
         top={isMobile ? "1.5rem" : "2rem"}
         right={isMobile ? "1.5rem" : "2rem"}
@@ -69,7 +70,12 @@ export default function CurrentWeather(props: Props) {
       <Box as="p" fontSize={isMobile ? "1rem" : "1.25rem"}>
         {formatDate(props.current.time)}
       </Box>
-      <Box fontSize={isMobile ? "5rem" : "7rem"} fontWeight="700" display="flex" alignItems="center">
+      <Box
+        fontSize={isMobile ? "5rem" : "7rem"}
+        fontWeight="700"
+        display="flex"
+        alignItems="center"
+      >
         {Math.round(props.current.temperature_2m)}°
         {getIcon(props.current.weather_code, props.current.is_day)}
       </Box>
@@ -98,7 +104,6 @@ export default function CurrentWeather(props: Props) {
         </Box>
       </Box>
       <Box
-        fontSize="1.5rem"
         fontSize={isMobile ? "1.2rem" : "1.5rem"}
         display="flex"
         flexDirection="row"
@@ -110,7 +115,12 @@ export default function CurrentWeather(props: Props) {
           {props.current_units.precipitation}
         </Box>
       </Box>
-      <Flex w={isMobile ? "calc(74vw)" : "calc(19vw)"} gap=".75rem" mt=".5rem" overflowX="scroll">
+      <Flex
+        w={isMobile ? "calc(74vw)" : "calc(19vw)"}
+        gap=".75rem"
+        mt=".5rem"
+        overflowX="scroll"
+      >
         {props.hourly.time.slice(0, 24).map((el, index) => (
           <Flex
             direction="column"

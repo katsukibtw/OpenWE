@@ -6,7 +6,7 @@ export interface CurrentDataUnits {
 export interface CurrentData {
   time: string;
   precipitation: number;
-  is_day: number;
+  is_day: boolean;
   temperature_2m: number;
   apparent_temperature: number;
   weather_code: number;
@@ -21,13 +21,13 @@ export interface HourlyDataUnits {
   time: string;
   temperature_2m: string;
   weather_code: string;
-  is_day: string;
+  is_day: boolean;
 }
 
 export interface HourlyData {
   time: string[];
   weather_code: number[];
-  is_day: number[];
+  is_day: boolean[];
   temperature_2m: number[];
 }
 

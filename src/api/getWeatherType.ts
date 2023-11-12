@@ -1,4 +1,4 @@
-const getWeatherType = (weather_code: int) => {
+const getWeatherType = (weather_code: number) => {
   switch (weather_code) {
     case 0:
       return "Clear sky";

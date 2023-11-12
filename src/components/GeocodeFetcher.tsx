@@ -6,7 +6,7 @@ import { ImCross } from "react-icons/im";
 import { useCitiesStore } from "../store";
 
 export default function GeocodeFetcher() {
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
   const { isLoading, data, isError } = useQuery(
     ["geocode", inputRef.current?.value],
     () => fetchCities(inputRef.current?.value),
@@ -20,8 +20,7 @@ export default function GeocodeFetcher() {
 
   const addCity = useCitiesStore((state) => state.addCity);
   const changeCurrentCity = useCitiesStore((state) => state.changeCurrentCity);
-  const currentCityId = useCitiesStore((state) => state.currentCityId);
-				const citiesCount = useCitiesStore((state) => state.cities.length);
+  const citiesCount = useCitiesStore((state) => state.cities.length);
 
   const handleCityClick = (
     name: string,
@@ -90,7 +89,15 @@ export default function GeocodeFetcher() {
                 p=".5rem"
                 borderRadius=".5rem"
                 transition=".2s ease"
-                onClick={() => handleCityClick(el.name, el.country, el.timezone, el.latitude, el.longitude)}
+                onClick={() =>
+                  handleCityClick(
+                    el.name,
+                    el.country,
+                    el.timezone,
+                    el.latitude,
+                    el.longitude,
+                  )
+                }
               >
                 {el.name} /
                 <Box color="gray.500" fontWeight="700">

@@ -116,7 +116,6 @@ function App() {
               gap="1rem"
               h="calc(90vh)"
               direction={isMobile ? "column" : "row"}
-              textAlign={isMobile ? "center" : ""}
             >
               <Spinner
                 thickness="4px"
@@ -138,14 +137,13 @@ function App() {
               direction={isMobile ? "column" : "row"}
               fontSize={isMobile ? "1.5rem" : "2rem"}
               fontWeight="700"
-              textAlign={isMobile ? "center" : ""}
             >
               <Box p="1rem" bg="red.100" borderRadius=".5rem" color="red.700">
                 <ImCross />
               </Box>
               <Box>Error! Failed to fetch data from server</Box>
             </Flex>
-          ) : cities.length > 0 ? (
+          ) : cities.length > 0 && data ? (
             <>
               <CurrentWeather
                 city={currentCity?.name}

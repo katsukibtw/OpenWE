@@ -26,7 +26,7 @@ import {
   WiThunderstorm,
 } from "react-icons/wi";
 
-const getDayIcon = (weather_code: int) => {
+const getDayIcon = (weather_code: number) => {
   switch (weather_code) {
     case 0:
     case 1:
@@ -75,7 +75,7 @@ const getDayIcon = (weather_code: int) => {
   }
 };
 
-const getNightIcon = (weather_code: int) => {
+const getNightIcon = (weather_code: number) => {
   switch (weather_code) {
     case 0:
     case 1:
@@ -124,7 +124,7 @@ const getNightIcon = (weather_code: int) => {
   }
 };
 
-const getIcon = (weather_code: int, isDay: boolean) => {
+const getIcon = (weather_code: number, isDay: boolean) => {
   return isDay ? getDayIcon(weather_code) : getNightIcon(weather_code);
 };
 

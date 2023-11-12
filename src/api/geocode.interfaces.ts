@@ -11,6 +11,7 @@ export interface GeocodeResult {
   elevation: number;
   feature_code: string;
   id: number;
+  latitude: number;
   longitude: number;
   name: string;
   population: number;

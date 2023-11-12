@@ -37,7 +37,7 @@ export const useCitiesStore = create<CitiesStore>()(
           lat: 53.20066,
           lon: 45.00464,
         },
-        currentCityId: null,
+        currentCityId: 0,
         addCity: (
           name: string,
           country: string,
