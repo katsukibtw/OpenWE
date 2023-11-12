@@ -92,7 +92,11 @@ function App() {
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton mt={3} />
-          <ModalBody minH={isMobile? "calc(90vh)" : "10rem"} p={4} w={isMobile ? "90vw" : "26rem"}>
+          <ModalBody
+            minH={isMobile ? "calc(90vh)" : "10rem"}
+            p={4}
+            w={isMobile ? "90vw" : "26rem"}
+          >
             <VStack spacing={0} align="left" w="auto">
               <GeocodeFetcher />
             </VStack>
@@ -108,6 +112,7 @@ function App() {
           mx="auto"
           mt={isMobile ? "1rem" : "2rem"}
           p={isMobile ? 3 : 0}
+          justifyContent="center"
         >
           {isLoading ? (
             <Flex
