@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 
 interface City {
   name: string;
@@ -12,17 +13,66 @@ interface City {
 interface CitiesStore {
   cities: City[];
   currentCity: City;
-  addCity: (city: City) => void;
+  currentCityId: number;
+  addCity: (
+    name: string,
+    country: string,
+    timezone: string,
+    lat: number,
+    lon: number,
+  ) => void;
+  changeCurrentCity: (cityId: number) => void;
+  removeCity: (cityId: number) => void;
 }
 
 export const useCitiesStore = create<CitiesStore>()(
   devtools(
     persist(
-      (set) => ({
+      immer((set) => ({
         cities: [],
-        currentCity: null,
-        addCity: (city) => set((state) => ({ cities: state.cities + city })),
-      }),
+        currentCity: {
+          name: "Penza",
+          country: "Russia",
+          timezone: "Europe/Moscow",
+          lat: 53.20066,
+          lon: 45.00464,
+        },
+        currentCityId: null,
+        addCity: (
+          name: string,
+          country: string,
+          timezone: string,
+          lat: number,
+          lon: number,
+        ) =>
+          set((state) => {
+            state.cities.push({
+              name: name,
+              country: country,
+              timezone: timezone,
+              lat: lat,
+              lon: lon,
+            });
+          }),
+        changeCurrentCity: (cityId: number) =>
+          set((state) => ({
+            currentCity:
+              cityId === -1
+                ? {
+                    name: "Penza",
+                    country: "Russia",
+                    timezone: "Europe/Moscow",
+                    lat: 53.20066,
+                    lon: 45.00464,
+                  }
+                : state.cities[cityId],
+            currentCityId: cityId === -1 ? 0 : cityId,
+          })),
+        removeCity: (cityId: number) =>
+          set((state) => {
+            state.cities.splice(cityId, 1);
+          }),
+      })),
       { name: "citiesStore" },
     ),
   ),

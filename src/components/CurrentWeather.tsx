@@ -1,18 +1,28 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, IconButton } from "@chakra-ui/react";
 import { WiDirectionUp } from "react-icons/wi";
+import { RxCross2 } from "react-icons/rx";
 import getIcon from "../api/getIcon";
 import getWeatherType from "../api/getWeatherType";
 import formatDate from "../api/formatDate";
-import { CurrentData, CurrentDataUnits, HourlyData } from '../api/weather.interfaces';
+import {
+  CurrentData,
+  CurrentDataUnits,
+  HourlyData,
+} from "../api/weather.interfaces";
+import { useCitiesStore } from "../store";
 
 interface Props {
   city: string;
+  country: string;
   current: CurrentData;
   current_units: CurrentDataUnits;
   hourly: HourlyData;
 }
 
 export default function CurrentWeather(props: Props) {
+  const removeCity = useCitiesStore((state) => state.removeCity);
+  const currentCityId = useCitiesStore((state) => state.currentCityId);
+				const changeCurrentCity = useCitiesStore((state) => state.changeCurrentCity);
   return (
     <Box
       w="calc(22.5vw)"
@@ -32,9 +42,23 @@ export default function CurrentWeather(props: Props) {
       p="2rem"
       color="white"
       boxShadow="dark-lg"
+      pos="relative"
     >
+      <IconButton
+        pos="absolute"
+        top="2rem"
+        right="2rem"
+        bg="transparent"
+        color="white"
+        fontSize="1.75rem"
+        _hover={{ bg: "red.100", color: "red.600" }}
+        icon={<RxCross2 />}
+        onClick={() => {removeCity(currentCityId); changeCurrentCity(currentCityId - 1)}}
+      />
       <Box as="p" fontSize="2rem">
         {props.city}
+        {" / "}
+        {props.country}
       </Box>
       <Box as="p" fontSize="1.25rem">
         {formatDate(props.current.time)}
@@ -74,7 +98,7 @@ export default function CurrentWeather(props: Props) {
         gap=".25rem"
         alignItems="center"
       >
-								Precipitation - {props.current.precipitation}
+        Precipitation - {props.current.precipitation}
         <Box as="span" fontWeight="700" fontSize="1.25rem">
           {props.current_units.precipitation}
         </Box>

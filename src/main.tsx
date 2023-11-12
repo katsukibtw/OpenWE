@@ -13,7 +13,6 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <ChakraProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
       <App />
     </ChakraProvider>
   </QueryClientProvider>,
