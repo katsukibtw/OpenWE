@@ -19,3 +19,14 @@ OpenWE это мини-проект, написанный в качестве к
 * [Zustand](https://zustand-demo.pmnd.rs/) - state management библиотека, являющаяся более легкой альтернативой React Redux, позволяющая писать множественные гибкие сторы для хранения данных без обилия бойлерплейта.
 
 > Вместе с zustand использовалась библиотека immer для создания изменяемого стора.
+
+## Сборка
+
+Сборка продукта производится стандартным NPM
+
+```
+git clone https://codeberg.org/katsuki/openwe 
+cd openwe 
+npm install 
+npm run build
+```
