@@ -1,27 +1,21 @@
-# React + TypeScript + Vite
+# OpenWE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+OpenWE это мини-проект, написанный в качестве контрольного задания для лаборатории Айтеко на первый семестр.
 
-Currently, two official plugins are available:
+Опробовать сайт можно [здесь](https://katsuki.codeberg.page/openwe)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Данный сайт представляет собой простенький одностраничник, отображающий погоду, получаемую из Open Meteo API. Написан продукт на React + TypeScript.
 
-## Expanding the ESLint configuration
+## Использованные API
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+* [Open Meteo Weather API](https://open-meteo.com/en/docs) - Открытое REST API, предоставляющее данные о прогнозе погоды на заданный промежуток времени (на неделю вперед, по умолчанию).
+* [Open Meteo Geocoding API](https://open-meteo.com/en/docs/geocoding-api) - Открытое REST API, позволяющее осуществлять поиск данных о городе по его названию.
 
-- Configure the top-level `parserOptions` property like this:
+## Использованные библиотеки / фреймворки
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+* [Chakra-UI](https://chakra-ui.com/) - библиотека UI компонентов.
+* [React-icons](https://react-icons.github.io/react-icons/) - сборник SVG иконок, адаптированных под использование среди React компонентов.
+* [React-query](https://tanstack.com/query/latest/) - state management фреймворк, облегчающий хранение и обработку данный, полученных от api.
+* [Zustand](https://zustand-demo.pmnd.rs/) - state management библиотека, являющаяся более легкой альтернативой React Redux, позволяющая писать множественные гибкие сторы для хранения данных без обилия бойлерплейта.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+> Вместе с zustand использовалась библиотека immer для создания изменяемого стора.

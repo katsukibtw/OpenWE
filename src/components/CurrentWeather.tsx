@@ -1,4 +1,4 @@
-import { Box, Flex, IconButton } from "@chakra-ui/react";
+import { Box, Flex, IconButton, useMediaQuery } from "@chakra-ui/react";
 import { WiDirectionUp } from "react-icons/wi";
 import { RxCross2 } from "react-icons/rx";
 import getIcon from "../api/getIcon";
@@ -20,12 +20,15 @@ interface Props {
 }
 
 export default function CurrentWeather(props: Props) {
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
+
   const removeCity = useCitiesStore((state) => state.removeCity);
   const currentCityId = useCitiesStore((state) => state.currentCityId);
-				const changeCurrentCity = useCitiesStore((state) => state.changeCurrentCity);
+  const changeCurrentCity = useCitiesStore((state) => state.changeCurrentCity);
+
   return (
     <Box
-      w="calc(22.5vw)"
+      w={isMobile ? "calc(94vw)" : "calc(22.5vw)"}
       bgGradient={
         props.current.rain > 0
           ? "linear(to-br, gray.700, gray.500)"
@@ -39,41 +42,44 @@ export default function CurrentWeather(props: Props) {
       }
       borderRadius=".75rem"
       h="max-content"
-      p="2rem"
+      p={isMobile ? "1.5rem" : "2rem"}
       color="white"
       boxShadow="dark-lg"
       pos="relative"
     >
       <IconButton
         pos="absolute"
-        top="2rem"
-        right="2rem"
+        top={isMobile ? "1.5rem" : "2rem"}
+        right={isMobile ? "1.5rem" : "2rem"}
         bg="transparent"
         color="white"
-        fontSize="1.75rem"
+        fontSize={isMobile ? "1.5rem" : "1.75rem"}
         _hover={{ bg: "red.100", color: "red.600" }}
         icon={<RxCross2 />}
-        onClick={() => {removeCity(currentCityId); changeCurrentCity(currentCityId - 1)}}
+        onClick={() => {
+          removeCity(currentCityId);
+          changeCurrentCity(currentCityId - 1);
+        }}
       />
-      <Box as="p" fontSize="2rem">
+      <Box as="p" fontSize={isMobile ? "1.6rem" : "2rem"}>
         {props.city}
         {" / "}
         {props.country}
       </Box>
-      <Box as="p" fontSize="1.25rem">
+      <Box as="p" fontSize={isMobile ? "1rem" : "1.25rem"}>
         {formatDate(props.current.time)}
       </Box>
-      <Box fontSize="7rem" fontWeight="700" display="flex" alignItems="center">
+      <Box fontSize={isMobile ? "5rem" : "7rem"} fontWeight="700" display="flex" alignItems="center">
         {Math.round(props.current.temperature_2m)}°
         {getIcon(props.current.weather_code, props.current.is_day)}
       </Box>
-      <Box fontSize="1.25rem">
+      <Box fontSize={isMobile ? "1rem" : "1.25rem"}>
         Feels like {Math.round(props.current.apparent_temperature)}°
       </Box>
       <Box fontSize="1.5rem">{getWeatherType(props.current.weather_code)}</Box>
       <Box
         mt="2rem"
-        fontSize="1.5rem"
+        fontSize={isMobile ? "1.2rem" : "1.5rem"}
         display="flex"
         flexDirection="row"
         gap=".25rem"
@@ -93,6 +99,7 @@ export default function CurrentWeather(props: Props) {
       </Box>
       <Box
         fontSize="1.5rem"
+        fontSize={isMobile ? "1.2rem" : "1.5rem"}
         display="flex"
         flexDirection="row"
         gap=".25rem"
@@ -103,18 +110,18 @@ export default function CurrentWeather(props: Props) {
           {props.current_units.precipitation}
         </Box>
       </Box>
-      <Flex w="calc(19vw)" gap=".75rem" mt=".5rem" overflowX="scroll">
+      <Flex w={isMobile ? "calc(74vw)" : "calc(19vw)"} gap=".75rem" mt=".5rem" overflowX="scroll">
         {props.hourly.time.slice(0, 24).map((el, index) => (
           <Flex
             direction="column"
             alignItems="center"
             justifyContent="center"
             w="auto"
-            fontSize="1.25rem"
+            fontSize={isMobile ? "1rem" : "1.25rem"}
             key={index}
           >
             {el.split("T")[1]}
-            <Box fontSize="3rem">
+            <Box fontSize={isMobile ? "2rem" : "3rem"}>
               {getIcon(
                 props.hourly.weather_code[index],
                 props.hourly.is_day[index],

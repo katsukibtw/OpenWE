@@ -16,6 +16,7 @@ import {
   Flex,
   Spinner,
   ScaleFade,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import "./App.css";
 import AddCity from "./components/AddCity";
@@ -31,6 +32,8 @@ import { useCitiesStore } from "./store";
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
+
   const { cities, currentCity, currentCityId, changeCurrentCity } =
     useCitiesStore((state) => state);
 
@@ -45,8 +48,13 @@ function App() {
   );
 
   return (
-    <Box p={3} mx="auto" w="calc(89rem)">
-      <HStack spacing={4}>
+    <Box p={isMobile ? 0 : 3} mx="auto" w={isMobile ? "calc(100vw)" : "89rem"}>
+      <HStack
+        spacing={4}
+        p={isMobile ? 3 : 0}
+        w={isMobile ? "calc(100vw)" : ""}
+        overflowX="scroll"
+      >
         <IconButton
           onClick={onOpen}
           aria-label="Add a city"
@@ -84,82 +92,79 @@ function App() {
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton mt={3} />
-          <ModalBody minH="10rem" w="26rem" p={4}>
+          <ModalBody minH={isMobile? "calc(90vh)" : "10rem"} p={4} w={isMobile ? "90vw" : "26rem"}>
             <VStack spacing={0} align="left" w="auto">
               <GeocodeFetcher />
             </VStack>
           </ModalBody>
         </ModalContent>
       </Modal>
-      {isLoading ? (
-        <ScaleFade initialScale={0.8} in={!isLoading}>
-          <Flex
-            direction="row"
-            h="calc(90vh)"
-            w="calc(80vw)"
-            mx="auto"
-            alignItems="center"
-            justifyContent="center"
-            gap="1rem"
-          >
-            <Spinner
-              thickness="4px"
-              speed="0.65s"
-              emptyColor="gray.200"
-              color="blue.500"
-              size="xl"
-            />
-            <Box fontSize="2rem" fontWeight="700">
-              Getting data from server...
-            </Box>
-          </Flex>
-        </ScaleFade>
-      ) : isError ? (
-        <ScaleFade initialScale={0.8} in={!isLoading}>
-          <Flex
-            direction="row"
-            h="calc(90vh)"
-            w="calc(80vw)"
-            mx="auto"
-            alignItems="center"
-            justifyContent="center"
-            gap="1rem"
-            fontSize="2rem"
-            fontWeight="700"
-          >
-            <Box p="1rem" bg="red.100" borderRadius=".5rem" color="red.700">
-              <ImCross />
-            </Box>
-            <Box>Error! Failed to fetch data from server</Box>
-          </Flex>
-        </ScaleFade>
-      ) : cities.length > 0 ? (
-        <ScaleFade initialScale={0.8} in={!isLoading}>
-          <Flex
-            direction="row"
-            gap="2rem"
-            h="calc(90vh)"
-            w="calc(80vw)"
-            mx="auto"
-            mt="2rem"
-          >
-            <CurrentWeather
-              city={currentCity?.name}
-              country={currentCity?.country}
-              current={data.current}
-              current_units={data.current_units}
-              hourly={data.hourly}
-            />
-            <DailyForecast
-              daily={data.daily}
-              daily_units={data.daily_units}
-              hourly={data.hourly}
-            />
-          </Flex>
-        </ScaleFade>
-      ) : (
-        <AddCity />
-      )}
+      <ScaleFade initialScale={0.8} in={!isLoading}>
+        <Flex
+          direction={isMobile ? "column" : "row"}
+          gap="2rem"
+          h="calc(90vh)"
+          w={isMobile ? "100vw" : "calc(80vw)"}
+          mx="auto"
+          mt={isMobile ? "1rem" : "2rem"}
+          p={isMobile ? 3 : 0}
+        >
+          {isLoading ? (
+            <Flex
+              alignItems="center"
+              justifyContent="center"
+              gap="1rem"
+              h="calc(90vh)"
+              direction={isMobile ? "column" : "row"}
+              textAlign={isMobile ? "center" : ""}
+            >
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="xl"
+              />
+              <Box fontSize={isMobile ? "1.5rem" : "2rem"} fontWeight="700">
+                Getting data from server...
+              </Box>
+            </Flex>
+          ) : isError ? (
+            <Flex
+              alignItems="center"
+              justifyContent="center"
+              gap="1rem"
+              h="calc(90vh)"
+              direction={isMobile ? "column" : "row"}
+              fontSize={isMobile ? "1.5rem" : "2rem"}
+              fontWeight="700"
+              textAlign={isMobile ? "center" : ""}
+            >
+              <Box p="1rem" bg="red.100" borderRadius=".5rem" color="red.700">
+                <ImCross />
+              </Box>
+              <Box>Error! Failed to fetch data from server</Box>
+            </Flex>
+          ) : cities.length > 0 ? (
+            <>
+              <CurrentWeather
+                city={currentCity?.name}
+                country={currentCity?.country}
+                current={data.current}
+                current_units={data.current_units}
+                hourly={data.hourly}
+              />
+              <DailyForecast
+                daily={data.daily}
+                daily_units={data.daily_units}
+                hourly={data.hourly}
+              />
+            </>
+          ) : (
+            <AddCity />
+          )}
+        </Flex>
+      </ScaleFade>
     </Box>
   );
 }
