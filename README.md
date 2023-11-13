@@ -30,3 +30,7 @@ cd openwe
 npm install 
 npm run build
 ```
+
+## Скриншот
+
+![screenshot](./assets/1.png)
