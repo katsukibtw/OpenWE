@@ -112,7 +112,7 @@ function App() {
           mx="auto"
           mt={isMobile ? "1rem" : "2rem"}
           p={isMobile ? 3 : 0}
-          justifyContent="center"
+          justifyContent={isMobile ? "start" : "center"}
         >
           {isLoading ? (
             <Flex
