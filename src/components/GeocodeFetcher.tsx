@@ -1,17 +1,17 @@
-import { Input, Box, Flex, ScaleFade, Spinner } from "@chakra-ui/react";
-import { useQuery } from "react-query";
-import fetchCities from "../api/fetchCities";
-import { useRef } from "react";
-import { ImCross } from "react-icons/im";
-import { useCitiesStore } from "../store";
+import {Input, Box, Flex, ScaleFade, Spinner} from '@chakra-ui/react';
+import {useQuery} from 'react-query';
+import fetchCities from '../api/fetchCities';
+import {useRef} from 'react';
+import {ImCross} from 'react-icons/im';
+import {useCitiesStore} from '../store';
 
 export default function GeocodeFetcher() {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { isLoading, data, isError } = useQuery(
-    ["geocode", inputRef.current?.value],
+  const {isLoading, data, isError} = useQuery(
+    ['geocode', inputRef.current?.value],
     () => fetchCities(inputRef.current?.value),
     {
-      select: ({ data }) => data,
+      select: ({data}) => data,
       keepPreviousData: false,
       refetchOnWindowFocus: false,
       refetchInterval: 1000,
@@ -84,7 +84,7 @@ export default function GeocodeFetcher() {
                 display="flex"
                 flexDirection="row"
                 gap=".25rem"
-                _hover={{ bg: "gray.200" }}
+                _hover={{bg: 'gray.200'}}
                 alignItems="center"
                 p=".5rem"
                 borderRadius=".5rem"

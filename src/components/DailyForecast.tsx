@@ -7,15 +7,11 @@ import {
   AccordionIcon,
   AccordionButton,
   useMediaQuery,
-} from "@chakra-ui/react";
-import getIcon from "../api/getIcon";
-import formatDate from "../api/formatDate";
-import { WiDirectionUp } from "react-icons/wi";
-import {
-  DailyData,
-  DailyDataUnits,
-  HourlyData,
-} from "../api/weather.interfaces";
+} from '@chakra-ui/react';
+import getIcon from '../api/getIcon';
+import formatDate from '../api/formatDate';
+import {WiDirectionUp} from 'react-icons/wi';
+import {DailyData, DailyDataUnits, HourlyData} from '../api/weather.interfaces';
 
 interface Props {
   daily: DailyData;
@@ -26,12 +22,12 @@ interface Props {
 export default function DailyForecast(props: Props) {
   function chunkArray<T>(array: T[], chunkSize: number): T[][] {
     return Array.from(
-      { length: Math.ceil(array.length / chunkSize) },
+      {length: Math.ceil(array.length / chunkSize)},
       (_, index) => array.slice(index * chunkSize, (index + 1) * chunkSize),
     );
   }
 
-  const [isMobile] = useMediaQuery("(max-width: 768px)");
+  const [isMobile] = useMediaQuery('(max-width: 768px)');
 
   const chunkHourlyTime = chunkArray(props.hourly.time, 24);
   const chunkHourlyWeatherCode = chunkArray(props.hourly.weather_code, 24);
@@ -39,7 +35,7 @@ export default function DailyForecast(props: Props) {
   const chunkHourlyTemp = chunkArray(props.hourly.temperature_2m, 24);
 
   return (
-    <Box w={isMobile ? "94vw" : "50vw"}>
+    <Box w={isMobile ? '94vw' : '50vw'}>
       <Accordion defaultIndex={[0]} allowMultiple>
         {props.daily.time.map((el, index) =>
           index !== 0 ? (
@@ -86,7 +82,11 @@ export default function DailyForecast(props: Props) {
                     {getIcon(props.daily.weather_code[index], true)}
                   </Box>
                 </Box>
-                <Flex fontSize={isMobile ? "1rem" : "1.2rem"} gap=".35rem" alignItems="center">
+                <Flex
+                  fontSize={isMobile ? '1rem' : '1.2rem'}
+                  gap=".35rem"
+                  alignItems="center"
+                >
                   Maximum wind speed - {props.daily.wind_speed_10m_max[index]}
                   <Box fontWeight="700">
                     {props.daily_units.wind_speed_10m_max}
@@ -95,21 +95,21 @@ export default function DailyForecast(props: Props) {
                     as="span"
                     fontSize="2rem"
                     transform={
-                      "rotate(" +
+                      'rotate(' +
                       props.daily.wind_direction_10m_dominant[index] +
-                      "deg)"
+                      'deg)'
                     }
                   >
                     <WiDirectionUp />
                   </Box>
                 </Flex>
                 <Flex
-                  fontSize={isMobile ? "1rem" : "1.2rem"}
+                  fontSize={isMobile ? '1rem' : '1.2rem'}
                   mb=".5rem"
                   gap=".35rem"
                   alignItems="center"
                 >
-                  Precipitation sum: {props.daily.precipitation_sum[index]}{" "}
+                  Precipitation sum: {props.daily.precipitation_sum[index]}{' '}
                   {props.daily_units.precipitation_sum}
                 </Flex>
                 <Box
@@ -124,11 +124,11 @@ export default function DailyForecast(props: Props) {
                       alignItems="center"
                       justifyContent="center"
                       w="auto"
-                      fontSize={isMobile ? "1rem" : "1.25rem"}
+                      fontSize={isMobile ? '1rem' : '1.25rem'}
                       key={i}
                     >
-                      {ell.split("T")[1]}
-                      <Box fontSize={isMobile ? "2.9rem" : "3rem"}>
+                      {ell.split('T')[1]}
+                      <Box fontSize={isMobile ? '2.9rem' : '3rem'}>
                         {getIcon(
                           chunkHourlyWeatherCode[index][i],
                           chunkHourlyIsDay[index][i],
@@ -141,7 +141,7 @@ export default function DailyForecast(props: Props) {
               </AccordionPanel>
             </AccordionItem>
           ) : (
-            ""
+            ''
           ),
         )}
       </Accordion>

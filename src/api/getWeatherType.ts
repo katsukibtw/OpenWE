@@ -1,60 +1,60 @@
 const getWeatherType = (weather_code: number) => {
   switch (weather_code) {
     case 0:
-      return "Clear sky";
+      return 'Clear sky';
     case 1:
-      return "Mainly clear";
+      return 'Mainly clear';
     case 2:
-      return "Partly cloudy";
+      return 'Partly cloudy';
     case 3:
-      return "Overcast";
+      return 'Overcast';
     case 45:
     case 48:
-      return "Fog";
+      return 'Fog';
     case 51:
-      return "Light drizzle";
+      return 'Light drizzle';
     case 53:
-      return "Moderate drizzle";
+      return 'Moderate drizzle';
     case 55:
-      return "Dense drizzle";
+      return 'Dense drizzle';
     case 56:
-      return "Light freezing drizzle";
+      return 'Light freezing drizzle';
     case 57:
-      return "Dense freezing drizzle";
+      return 'Dense freezing drizzle';
     case 61:
-      return "Slight rain";
+      return 'Slight rain';
     case 63:
-      return "Moderate rain";
+      return 'Moderate rain';
     case 65:
-      return "Heavy rain";
+      return 'Heavy rain';
     case 66:
-      return "Light freezing rain";
+      return 'Light freezing rain';
     case 67:
-      return "Heavy freezing rain";
+      return 'Heavy freezing rain';
     case 71:
-      return "Slight snow fall";
+      return 'Slight snow fall';
     case 73:
-      return "Moderate snow fall";
+      return 'Moderate snow fall';
     case 75:
-      return "Heavy snow fall";
+      return 'Heavy snow fall';
     case 77:
-      return "Snow grains";
+      return 'Snow grains';
     case 80:
-      return "Slight rain showers";
+      return 'Slight rain showers';
     case 81:
-      return "Moderate rain showers";
+      return 'Moderate rain showers';
     case 82:
-      return "Violent rain showers";
+      return 'Violent rain showers';
     case 85:
-      return "Slight snow showers";
+      return 'Slight snow showers';
     case 86:
-      return "Heavy snow showers";
+      return 'Heavy snow showers';
     case 95:
-      return "Thunderstorm";
+      return 'Thunderstorm';
     case 96:
-      return "Thunderstorm with slight hail";
+      return 'Thunderstorm with slight hail';
     case 99:
-      return "Thunderstorm with heavy hail";
+      return 'Thunderstorm with heavy hail';
   }
 };
 

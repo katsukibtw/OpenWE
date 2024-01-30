@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
-import { immer } from "zustand/middleware/immer";
+import {create} from 'zustand';
+import {devtools, persist} from 'zustand/middleware';
+import {immer} from 'zustand/middleware/immer';
 
 interface City {
   name: string;
@@ -31,9 +31,9 @@ export const useCitiesStore = create<CitiesStore>()(
       immer((set) => ({
         cities: [],
         currentCity: {
-          name: "Penza",
-          country: "Russia",
-          timezone: "Europe/Moscow",
+          name: 'Penza',
+          country: 'Russia',
+          timezone: 'Europe/Moscow',
           lat: 53.20066,
           lon: 45.00464,
         },
@@ -59,9 +59,9 @@ export const useCitiesStore = create<CitiesStore>()(
             currentCity:
               cityId === -1
                 ? {
-                    name: "Penza",
-                    country: "Russia",
-                    timezone: "Europe/Moscow",
+                    name: 'Penza',
+                    country: 'Russia',
+                    timezone: 'Europe/Moscow',
                     lat: 53.20066,
                     lon: 45.00464,
                   }
@@ -73,7 +73,7 @@ export const useCitiesStore = create<CitiesStore>()(
             state.cities.splice(cityId, 1);
           }),
       })),
-      { name: "citiesStore" },
+      {name: 'citiesStore'},
     ),
   ),
 );

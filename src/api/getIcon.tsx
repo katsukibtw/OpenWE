@@ -24,7 +24,7 @@ import {
   WiSnow,
   WiSnowflakeCold,
   WiThunderstorm,
-} from "react-icons/wi";
+} from 'react-icons/wi';
 
 const getDayIcon = (weather_code: number) => {
   switch (weather_code) {

@@ -17,42 +17,42 @@ import {
   Spinner,
   ScaleFade,
   useMediaQuery,
-} from "@chakra-ui/react";
-import "./App.css";
-import AddCity from "./components/AddCity";
-import { AiOutlinePlus } from "react-icons/ai";
-import CurrentWeather from "./components/CurrentWeather";
-import DailyForecast from "./components/DailyForecast";
-import GeocodeFetcher from "./components/GeocodeFetcher";
-import { useQuery } from "react-query";
-import fetchWeather from "./api/fetchWeather";
-import { ImCross } from "react-icons/im";
-import { useCitiesStore } from "./store";
+} from '@chakra-ui/react';
+import './App.css';
+import AddCity from './components/AddCity';
+import {AiOutlinePlus} from 'react-icons/ai';
+import CurrentWeather from './components/CurrentWeather';
+import DailyForecast from './components/DailyForecast';
+import GeocodeFetcher from './components/GeocodeFetcher';
+import {useQuery} from 'react-query';
+import fetchWeather from './api/fetchWeather';
+import {ImCross} from 'react-icons/im';
+import {useCitiesStore} from './store';
 
 function App() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {isOpen, onOpen, onClose} = useDisclosure();
 
-  const [isMobile] = useMediaQuery("(max-width: 768px)");
+  const [isMobile] = useMediaQuery('(max-width: 768px)');
 
-  const { cities, currentCity, currentCityId, changeCurrentCity } =
+  const {cities, currentCity, currentCityId, changeCurrentCity} =
     useCitiesStore((state) => state);
 
-  const { isLoading, data, isError } = useQuery(
-    ["weather", currentCity.lat, currentCity.lon, currentCity.timezone],
+  const {isLoading, data, isError} = useQuery(
+    ['weather', currentCity.lat, currentCity.lon, currentCity.timezone],
     () => fetchWeather(currentCity.lat, currentCity.lon, currentCity.timezone),
     {
-      select: ({ data }) => data,
+      select: ({data}) => data,
       keepPreviousData: true,
       refetchOnWindowFocus: false,
     },
   );
 
   return (
-    <Box p={isMobile ? 0 : 3} mx="auto" w={isMobile ? "calc(100vw)" : "89rem"}>
+    <Box p={isMobile ? 0 : 3} mx="auto" w={isMobile ? 'calc(100vw)' : '89rem'}>
       <HStack
         spacing={4}
         p={isMobile ? 3 : 0}
-        w={isMobile ? "calc(100vw)" : ""}
+        w={isMobile ? 'calc(100vw)' : ''}
         overflowX="scroll"
       >
         <IconButton
@@ -93,9 +93,9 @@ function App() {
         <ModalContent>
           <ModalCloseButton mt={3} />
           <ModalBody
-            minH={isMobile ? "calc(90vh)" : "10rem"}
+            minH={isMobile ? 'calc(90vh)' : '10rem'}
             p={4}
-            w={isMobile ? "90vw" : "26rem"}
+            w={isMobile ? '90vw' : '26rem'}
           >
             <VStack spacing={0} align="left" w="auto">
               <GeocodeFetcher />
@@ -105,14 +105,14 @@ function App() {
       </Modal>
       <ScaleFade initialScale={0.8} in={!isLoading}>
         <Flex
-          direction={isMobile ? "column" : "row"}
+          direction={isMobile ? 'column' : 'row'}
           gap="2rem"
           h="calc(90vh)"
-          w={isMobile ? "100vw" : "calc(80vw)"}
+          w={isMobile ? '100vw' : 'calc(80vw)'}
           mx="auto"
-          mt={isMobile ? "1rem" : "2rem"}
+          mt={isMobile ? '1rem' : '2rem'}
           p={isMobile ? 3 : 0}
-          justifyContent={isMobile ? "start" : "center"}
+          justifyContent={isMobile ? 'start' : 'center'}
         >
           {isLoading ? (
             <Flex
@@ -120,7 +120,7 @@ function App() {
               justifyContent="center"
               gap="1rem"
               h="calc(90vh)"
-              direction={isMobile ? "column" : "row"}
+              direction={isMobile ? 'column' : 'row'}
             >
               <Spinner
                 thickness="4px"
@@ -129,7 +129,7 @@ function App() {
                 color="blue.500"
                 size="xl"
               />
-              <Box fontSize={isMobile ? "1.5rem" : "2rem"} fontWeight="700">
+              <Box fontSize={isMobile ? '1.5rem' : '2rem'} fontWeight="700">
                 Getting data from server...
               </Box>
             </Flex>
@@ -139,8 +139,8 @@ function App() {
               justifyContent="center"
               gap="1rem"
               h="calc(90vh)"
-              direction={isMobile ? "column" : "row"}
-              fontSize={isMobile ? "1.5rem" : "2rem"}
+              direction={isMobile ? 'column' : 'row'}
+              fontSize={isMobile ? '1.5rem' : '2rem'}
               fontWeight="700"
             >
               <Box p="1rem" bg="red.100" borderRadius=".5rem" color="red.700">

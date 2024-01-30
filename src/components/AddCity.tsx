@@ -1,7 +1,7 @@
-import { Box, VStack, Text } from '@chakra-ui/react';
-import { AiOutlinePlus } from "react-icons/ai";
-import { IconContext } from "react-icons";
-import "../App.css";
+import {Box, VStack, Text} from '@chakra-ui/react';
+import {AiOutlinePlus} from 'react-icons/ai';
+import {IconContext} from 'react-icons';
+import '../App.css';
 
 export default function AddCity() {
   return (
@@ -12,7 +12,7 @@ export default function AddCity() {
       justifyContent="center"
     >
       <VStack spacing={2}>
-        <IconContext.Provider value={{ className: "center_plus_icon" }}>
+        <IconContext.Provider value={{className: 'center_plus_icon'}}>
           <AiOutlinePlus />
         </IconContext.Provider>
         <Text>Add a city to see something here</Text>
