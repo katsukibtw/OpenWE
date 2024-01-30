@@ -23,7 +23,7 @@ export default function DailyForecast(props: Props) {
   function chunkArray<T>(array: T[], chunkSize: number): T[][] {
     return Array.from(
       {length: Math.ceil(array.length / chunkSize)},
-      (_, index) => array.slice(index * chunkSize, (index + 1) * chunkSize),
+      (_, index) => array.slice(index * chunkSize, (index + 1) * chunkSize)
     );
   }
 
@@ -48,19 +48,19 @@ export default function DailyForecast(props: Props) {
                   <Flex as="span" mr=".5rem" fontSize="2rem">
                     {getIcon(
                       chunkHourlyWeatherCode[index][5],
-                      chunkHourlyIsDay[index][5],
+                      chunkHourlyIsDay[index][5]
                     )}
                     {getIcon(
                       chunkHourlyWeatherCode[index][11],
-                      chunkHourlyIsDay[index][11],
+                      chunkHourlyIsDay[index][11]
                     )}
                     {getIcon(
                       chunkHourlyWeatherCode[index][16],
-                      chunkHourlyIsDay[index][16],
+                      chunkHourlyIsDay[index][16]
                     )}
                     {getIcon(
                       chunkHourlyWeatherCode[index][23],
-                      chunkHourlyIsDay[index][23],
+                      chunkHourlyIsDay[index][23]
                     )}
                   </Flex>
                   <AccordionIcon />
@@ -76,7 +76,7 @@ export default function DailyForecast(props: Props) {
                   mb="1rem"
                 >
                   {`${Math.round(
-                    props.daily.temperature_2m_max[index],
+                    props.daily.temperature_2m_max[index]
                   )}° / ${Math.round(props.daily.temperature_2m_min[index])}°`}
                   <Box fontSize="4rem">
                     {getIcon(props.daily.weather_code[index], true)}
@@ -131,7 +131,7 @@ export default function DailyForecast(props: Props) {
                       <Box fontSize={isMobile ? '2.9rem' : '3rem'}>
                         {getIcon(
                           chunkHourlyWeatherCode[index][i],
-                          chunkHourlyIsDay[index][i],
+                          chunkHourlyIsDay[index][i]
                         )}
                       </Box>
                       {Math.round(chunkHourlyTemp[index][i])}°
@@ -142,7 +142,7 @@ export default function DailyForecast(props: Props) {
             </AccordionItem>
           ) : (
             ''
-          ),
+          )
         )}
       </Accordion>
     </Box>

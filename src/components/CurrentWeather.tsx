@@ -22,9 +22,9 @@ interface Props {
 export default function CurrentWeather(props: Props) {
   const [isMobile] = useMediaQuery('(max-width: 768px)');
 
-  const removeCity = useCitiesStore((state) => state.removeCity);
-  const currentCityId = useCitiesStore((state) => state.currentCityId);
-  const changeCurrentCity = useCitiesStore((state) => state.changeCurrentCity);
+  const removeCity = useCitiesStore(state => state.removeCity);
+  const currentCityId = useCitiesStore(state => state.currentCityId);
+  const changeCurrentCity = useCitiesStore(state => state.changeCurrentCity);
 
   return (
     <Box
@@ -134,7 +134,7 @@ export default function CurrentWeather(props: Props) {
             <Box fontSize={isMobile ? '2rem' : '3rem'}>
               {getIcon(
                 props.hourly.weather_code[index],
-                props.hourly.is_day[index],
+                props.hourly.is_day[index]
               )}
             </Box>
             {Math.round(props.hourly.temperature_2m[index])}°

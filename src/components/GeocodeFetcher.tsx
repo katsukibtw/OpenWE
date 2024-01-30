@@ -15,19 +15,19 @@ export default function GeocodeFetcher() {
       keepPreviousData: false,
       refetchOnWindowFocus: false,
       refetchInterval: 1000,
-    },
+    }
   );
 
-  const addCity = useCitiesStore((state) => state.addCity);
-  const changeCurrentCity = useCitiesStore((state) => state.changeCurrentCity);
-  const citiesCount = useCitiesStore((state) => state.cities.length);
+  const addCity = useCitiesStore(state => state.addCity);
+  const changeCurrentCity = useCitiesStore(state => state.changeCurrentCity);
+  const citiesCount = useCitiesStore(state => state.cities.length);
 
   const handleCityClick = (
     name: string,
     country: string,
     timezone: string,
     lat: number,
-    lon: number,
+    lon: number
   ) => {
     addCity(name, country, timezone, lat, lon);
     changeCurrentCity(citiesCount);
@@ -95,7 +95,7 @@ export default function GeocodeFetcher() {
                     el.country,
                     el.timezone,
                     el.latitude,
-                    el.longitude,
+                    el.longitude
                   )
                 }
               >

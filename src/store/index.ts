@@ -19,7 +19,7 @@ interface CitiesStore {
     country: string,
     timezone: string,
     lat: number,
-    lon: number,
+    lon: number
   ) => void;
   changeCurrentCity: (cityId: number) => void;
   removeCity: (cityId: number) => void;
@@ -28,7 +28,7 @@ interface CitiesStore {
 export const useCitiesStore = create<CitiesStore>()(
   devtools(
     persist(
-      immer((set) => ({
+      immer(set => ({
         cities: [],
         currentCity: {
           name: 'Penza',
@@ -43,9 +43,9 @@ export const useCitiesStore = create<CitiesStore>()(
           country: string,
           timezone: string,
           lat: number,
-          lon: number,
+          lon: number
         ) =>
-          set((state) => {
+          set(state => {
             state.cities.push({
               name: name,
               country: country,
@@ -55,7 +55,7 @@ export const useCitiesStore = create<CitiesStore>()(
             });
           }),
         changeCurrentCity: (cityId: number) =>
-          set((state) => ({
+          set(state => ({
             currentCity:
               cityId === -1
                 ? {
@@ -69,11 +69,11 @@ export const useCitiesStore = create<CitiesStore>()(
             currentCityId: cityId === -1 ? 0 : cityId,
           })),
         removeCity: (cityId: number) =>
-          set((state) => {
+          set(state => {
             state.cities.splice(cityId, 1);
           }),
       })),
-      {name: 'citiesStore'},
-    ),
-  ),
+      {name: 'citiesStore'}
+    )
+  )
 );

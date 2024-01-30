@@ -35,7 +35,7 @@ function App() {
   const [isMobile] = useMediaQuery('(max-width: 768px)');
 
   const {cities, currentCity, currentCityId, changeCurrentCity} =
-    useCitiesStore((state) => state);
+    useCitiesStore(state => state);
 
   const {isLoading, data, isError} = useQuery(
     ['weather', currentCity.lat, currentCity.lon, currentCity.timezone],
@@ -44,7 +44,7 @@ function App() {
       select: ({data}) => data,
       keepPreviousData: true,
       refetchOnWindowFocus: false,
-    },
+    }
   );
 
   return (
@@ -67,7 +67,7 @@ function App() {
         <Tabs
           variant="unstyled"
           index={currentCityId}
-          onChange={(index) => changeCurrentCity(index)}
+          onChange={index => changeCurrentCity(index)}
         >
           {cities.length > 0 ? (
             <>
